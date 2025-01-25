@@ -7,5 +7,5 @@
 このコードは、コマンドプロンプトで実行できます。実行すると、以下のように、アーカイブされたIssueとアクティブなIssueの数が表示されます。
 
 PS C:\pythons\test> python .\count_issue.py -i "Export Wed Jan 22 2025.csv"
-total 101 archived 90 active 14
+total 104 archived 90 active 14
 この結果から、現在のプロジェクトにおけるIssueの数を把握できます。
