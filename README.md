@@ -15,4 +15,6 @@ sorry here is no api examples yet.
 - API
   - hello_linear - 公式と同じ issueを表示する。デフォルトの作成順・最大５０件
   - intro_****.py - [Linear API:Working with the GraphQL API](https://developers.linear.app/docs/graphql/working-with-the-graphql-api)のすべてのクエリの実行
+  - attachment.py - [Attachments/リンク](https://developers.linear.app/docs/graphql/attachments) のクエリの実行
+  - attachment_meta.py - Attachmentの特別なmetadata Rich metadataとFormattingのサンプル
 
