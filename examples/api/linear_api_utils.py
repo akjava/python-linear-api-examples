@@ -22,6 +22,7 @@
 
 import json
 import os
+import time
 
 from dotenv import load_dotenv
 import requests
@@ -59,3 +60,30 @@ def load_api_key():
             "Linear Settings Security&access - Personal API keysからAPI Keyは作成できます。"
         )
         exit(0)
+
+
+def execute_query(label, query_text, authorization):
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": authorization,
+    }
+
+    start_time_total = time.time()
+    print(f"--- 処理の開始:{label} ({time.strftime('%Y-%m-%d %H:%M:%S')}) ---")
+
+    query_dic = {"query": query_text}
+    print("--- クエリの表示開始 ---")
+    print(f"{query_dic['query']}")
+    print("--- クエリの表示終了 ---")
+    result = request_linear(headers, query_dic)
+    print("--- 結果の表示開始 ---")
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    print("--- 結果の表示終了 ---")
+    end_time_total = time.time()
+    total_time = end_time_total - start_time_total
+    print(f"--- 処理の終了:{label} ---")
+    print(f"合計処理時間: {total_time:.4f} 秒")
+
+    print("")  # spacer
+
+    return result
