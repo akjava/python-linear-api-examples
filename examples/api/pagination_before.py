@@ -52,7 +52,6 @@ Afterとの違いは
 if __name__ == "__main__":
     api_key = load_api_key()
 
-    data = {"query": "{ issues { nodes { id title } } }"}
     before = None
     active_issues = []
 

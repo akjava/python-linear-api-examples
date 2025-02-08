@@ -47,7 +47,6 @@ Issueの数が多かったり、頻繁に呼び出すと、Rate-Limitの関係�
 if __name__ == "__main__":
     api_key = load_api_key()
 
-    data = {"query": "{ issues { nodes { id title } } }"}
     after = None
     active_issues = []
 
