@@ -28,11 +28,16 @@ from dotenv import load_dotenv
 import requests
 
 
-def request_linear(headers, data, url="https://api.linear.app/graphql"):
+def request_linear(
+    headers, data, url="https://api.linear.app/graphql", print_header=False
+):
+    response_data = None
     try:
         response = requests.post(url, headers=headers, json=data)
 
         response_data = response.json()
+        if print_header:
+            print(response.headers)
 
         response.raise_for_status()  # ステータスコードが200番台以外の場合に例外を発生させる
         return response_data
@@ -62,7 +67,7 @@ def load_api_key():
         exit(0)
 
 
-def execute_query(label, query_text, authorization):
+def execute_query(label, query_text, authorization, print_header=False):
     headers = {
         "Content-Type": "application/json",
         "Authorization": authorization,
@@ -75,7 +80,7 @@ def execute_query(label, query_text, authorization):
     print("--- クエリの表示開始 ---")
     print(f"{query_dic['query']}")
     print("--- クエリの表示終了 ---")
-    result = request_linear(headers, query_dic)
+    result = request_linear(headers, query_dic, print_header=print_header)
     print("--- 結果の表示開始 ---")
     print(json.dumps(result, indent=2, ensure_ascii=False))
     print("--- 結果の表示終了 ---")
