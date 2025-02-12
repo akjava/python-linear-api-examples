@@ -25,6 +25,7 @@ import os
 import time
 
 from dotenv import load_dotenv
+from pprint import pprint
 import requests
 
 
@@ -37,7 +38,9 @@ def request_linear(
 
         response_data = response.json()
         if print_header:
-            print(response.headers)
+            print("--- ヘッダーの表示開始 ---")
+            pprint(dict(response.headers), indent=4)
+            print("--- ヘッダーの表示終了 ---")
 
         response.raise_for_status()  # ステータスコードが200番台以外の場合に例外を発生させる
         return response_data
@@ -51,8 +54,9 @@ def request_linear(
         exit(0)
 
 
-def load_api_key():
-    load_dotenv(dotenv_path=".env")
+def load_api_key(dir="./"):
+    print(f"{dir}.env")
+    load_dotenv(dotenv_path=f"{dir}.env")
     if "api_key" in os.environ:
         api_key = os.environ["api_key"]
         return api_key
